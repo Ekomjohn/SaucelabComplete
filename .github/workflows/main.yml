@@ -1,25 +1,25 @@
-name: saucelabcomplete
+name: Cypress Tests
 
-on: 
-  push:
-    branches:
-      - main
+on: [push]
 
 jobs:
-  saucelabcomplete:
+  Cypress-Test:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
+      - name: Checkout Git Code
         uses: actions/checkout@v2
 
-      - name: Set up Node.js
+      - name: Install Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: '16'
+          node-version: '16'  # Ensure you're using a compatible Node.js version
 
-      - name: Install dependencies
+      - name: Install Dependencies
         run: npm install
 
-      - name: saucelabcomplete
-        run: npx cypress run --headless
+      - name: Run Cypress Test
+        uses: cypress-io/github-action@v4
+        with:
+          browser: chrome
+          headless: true
