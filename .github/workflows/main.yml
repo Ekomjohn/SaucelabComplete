@@ -1,13 +1,22 @@
-name: Run Cypress Tests
+name: Cypress CI Workflow
 on:
-  push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
+  - push
+  - pull_request
 jobs:
-  cypress-run:
+  run-tests-with-hooks:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "18"
+      - name: Install dependencies
+        run: npm install
+      - name: Run Cypress Tests (With Hooks)
+        run: npm run cypress:run
+  run-tests-without-hooks:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -22,8 +31,3 @@ jobs:
         run: npm run cypress:run
         env:
           CYPRESS_skipHooks: true
-      - name: Upload Cypress Test Results
-        uses: actions/upload-artifact@v3
-        with:
-          name: cypress-test-results
-          path: cypress/results/
