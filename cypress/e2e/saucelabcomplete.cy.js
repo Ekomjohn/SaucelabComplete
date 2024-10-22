@@ -18,7 +18,7 @@ describe("Saucedemo lab page object model test", () => {
     const complete = new Complete();
     
 it("validate successful POM login", () => { 
-   cy.visit("https://www.saucedemo.com/")
+  
     
     login.enterUsername(); 
     login.enterPassword();
@@ -27,7 +27,7 @@ it("validate successful POM login", () => {
     inventory.clickLockout();
 });
  it("Add items to the cart and checkout", ()=> {
-   cy.visit("https://www.saucedemo.com/")
+  
     login.enterUsername(); 
     login.enterPassword();
     login.clickLoginButton();
@@ -40,7 +40,7 @@ it("validate successful POM login", () => {
  });
 
  it("Add first name, last name, zip code and continue to checkout", ()=> {
-   cy.visit("https://www.saucedemo.com/")
+  
     login.enterUsername(); 
     login.enterPassword();
     login.clickLoginButton();
@@ -57,7 +57,7 @@ it("validate successful POM login", () => {
  });
 
  it("Finish transaction", ()=> {
-   cy.visit("https://www.saucedemo.com/")
+ 
     login.enterUsername(); 
     login.enterPassword();
     login.clickLoginButton();
