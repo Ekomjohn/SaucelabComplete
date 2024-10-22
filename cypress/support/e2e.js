@@ -22,7 +22,7 @@ import 'cypress-mochawesome-reporter/register';
 
 
 require('cypress-xpath')
-beforeEach(()=> {
+/*beforeEach(()=> {
    cy.visit("https://www.saucedemo.com/")
     cy.log ('Login');
-})
+})*/
