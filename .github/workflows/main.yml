@@ -1,9 +1,11 @@
-name: Cypress CI Workflow
+name: saucelabcomplete
 on:
-  - push
-  - pull_request
+  push:
+    branches:
+      - main
+  
 jobs:
-  run-tests-with-hooks:
+  cypress-run:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -14,20 +16,17 @@ jobs:
           node-version: "18"
       - name: Install dependencies
         run: npm install
-      - name: Run Cypress Tests (With Hooks)
-        run: npm run cypress:run
-  run-tests-without-hooks:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
+      - name: Run Cypress tests
+        run: npm run test
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@v3
         with:
-          node-version: "18"
-      - name: Install dependencies
-        run: npm install
-      - name: Run Cypress Tests (Without Hooks)
-        run: npm run cypress:run
-        env:
-          CYPRESS_skipHooks: true
+          name: cypress-results
+          path: cypress/results
+      - name: Upload screenshots on failure
+        if: failure()
+        uses: actions/upload-artifact@v3
+        with:
+          name: cypress-screenshots
+          path: cypress/screenshots
