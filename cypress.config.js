@@ -2,7 +2,10 @@ const { defineConfig } = require('cypress');
 const { beforeRunHook, afterRunHook } = require('cypress-mochawesome-reporter/lib');
 
 module.exports = defineConfig({
-  pageLoadTimeout: 120000,
+  watchForFileChanges:false,
+  defaultCommandTimeout: 30000,
+  requestTimeout: 30000,
+  responseTimeout: 30000,
    reporter: 'cypress-mochawesome-reporter',
   reporterOptions: {
     charts: true,
