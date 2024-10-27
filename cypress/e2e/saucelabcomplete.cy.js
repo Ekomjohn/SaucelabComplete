@@ -8,13 +8,17 @@ import CheckOutInfo from "../pages/checkoutinfo";
 import CheckOutFinal from "../pages/checkoutfinal";
 import Complete from "../pages/completepage";
 
-/*beforeEach(()=> {
+beforeEach(()=> {
    cy.visit("https://www.saucedemo.com/");
-    cy.log ('Login');
-})*/
+    cy.log('Login');
+    const login = new Login();
+    login.enterUsername(); 
+    login.enterPassword();
+    login.clickLoginButton();
+})
 
 describe("Saucedemo lab page object model test", () => { 
-    const login = new Login();
+   
     const inventory = new Inventory();
     const cartItems = new CartItems();
     const checkOut = new CheckOut();
@@ -22,22 +26,11 @@ describe("Saucedemo lab page object model test", () => {
     const checkOutFinal = new CheckOutFinal();
     const complete = new Complete();
     
-it("validate successful POM login", () => { 
-   cy.visit("https://www.saucedemo.com/");
-   cy.log ('Login');
-    
-    login.enterUsername(); 
-    login.enterPassword();
-    login.clickLoginButton();
+it("validate successful POM login", () => {      
     inventory.clickHamburgerMenu();
     inventory.clickLockout();
 });
  it("Add items to the cart and checkout", ()=> {
-   cy.visit("https://www.saucedemo.com/");
-   cy.log ('Login');
-    login.enterUsername(); 
-    login.enterPassword();
-    login.clickLoginButton();
     inventory.selectItem();
     inventory.clickCartIcon();
     cartItems.validateAvailableItem();
@@ -47,11 +40,6 @@ it("validate successful POM login", () => {
  });
 
  it("Add first name, last name, zip code and continue to checkout", ()=> {
-   cy.visit("https://www.saucedemo.com/");
-   cy.log ('Login');
-    login.enterUsername(); 
-    login.enterPassword();
-    login.clickLoginButton();
     inventory.selectItem();
     inventory.clickCartIcon();
     cartItems.validateAvailableItem();
@@ -64,12 +52,7 @@ it("validate successful POM login", () => {
     checkOutInfo.clickContinueButton ();
  });
 
- it("Finish transaction", ()=> {
-   cy.visit("https://www.saucedemo.com/");
-   cy.log ('Login');
-    login.enterUsername(); 
-    login.enterPassword();
-    login.clickLoginButton();
+ it("Finish transaction", ()=> {   
     inventory.selectItem();
     inventory.clickCartIcon();
     cartItems.validateAvailableItem();
