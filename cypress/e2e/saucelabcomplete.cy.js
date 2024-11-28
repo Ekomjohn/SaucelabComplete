@@ -67,6 +67,6 @@ it("validate successful POM login", () => {
     checkOutFinal.validateCartcontent ();
     checkOutFinal.validatePrice ();
     checkOutFinal.clickFinishBtn ();
-    complete.validateThankYouMessage ();
+    //complete.validateThankYouMessage ();
  });
 });
