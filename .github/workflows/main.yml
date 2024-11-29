@@ -22,4 +22,16 @@ jobs:
         uses: cypress-io/github-action@v4
         with:
           browser: chrome
-          headless: true
+          
+      - name: Send email notification
+        if: success()
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 465
+          username: ${{ secrets.EMAIL_USERNAME }}
+          password: ${{ secrets.EMAIL_PASSWORD }}
+          subject: "Cypress Tests Successful"
+          body: "All Cypress tests passed successfully!"
+          to: ekomobongjohn0228@gmail.com
+          from: ekayhally@gmail.com
