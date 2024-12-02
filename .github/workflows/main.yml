@@ -33,5 +33,5 @@ jobs:
           password: ${{ secrets.EMAIL_PASSWORD }}
           subject: "Cypress Tests Successful"
           body: "All Cypress tests passed successfully!"
-          to: ekomobongjohn0228@gmail.com
+          to: ekayhally@gmail.com
           from: ekayhally@gmail.com
